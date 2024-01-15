@@ -1,7 +1,7 @@
 type Weather {
   city: String!
+  weather: String!
   temperature: Float!
-  description: String!
 }
 
 type Repository {

@@ -37,8 +37,8 @@ export type Repository = {
 export type Weather = {
   __typename?: 'Weather';
   city: Scalars['String']['output'];
-  description: Scalars['String']['output'];
   temperature: Scalars['Float']['output'];
+  weather: Scalars['String']['output'];
 };
 
 
@@ -144,8 +144,8 @@ export type RepositoryResolvers<ContextType = any, ParentType extends ResolversP
 
 export type WeatherResolvers<ContextType = any, ParentType extends ResolversParentTypes['Weather'] = ResolversParentTypes['Weather']> = {
   city?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   temperature?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  weather?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
