@@ -1,22 +1,21 @@
 {
-  "name": "your-backend-app",
+  "name": "BeyondPlay_backend",
   "version": "1.0.0",
-  "description": "Your GraphQL back-end project description",
+  "description": "",
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node src/server.ts",
+    "test": "jest",
     "build": "tsc",
-    "serve": "node dist/server.js",
-    "test": "jest"
+    "serve": "node dist/server.js"
   },
   "keywords": [
     "graphql",
     "typescript",
     "nodejs"
   ],
-  "author": "Your Name",
+  "author": "Valentin Gaugain",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "apollo-server": "^3.13.0",
     "dotenv": "^16.3.1",

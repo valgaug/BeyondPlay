@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server';
-import resolvers from './graphql/resolvers';
-import context from './graphql/context';
+import { resolvers } from './graphql/resolvers';
+import context from './graphql/contexts/github';
 import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { join } from 'path';
@@ -22,3 +22,5 @@ async function startServer() {
   const { url } = await server.listen({ port: 4000 });
   console.log(`Server is running at ${url}`);
 }
+
+startServer();
