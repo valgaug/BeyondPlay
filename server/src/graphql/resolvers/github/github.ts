@@ -14,7 +14,6 @@ const queryResolvers: QueryResolvers = {
       user: context.user.userId,
       timestamp: new Date().toISOString(),
     });
-    console.log(accessLog);
     return data;
   },
 };
