@@ -18,6 +18,7 @@
   "author": "Valentin Gaugain",
   "license": "MIT",
   "dependencies": {
+    "@octokit/core": "^5.0.2",
     "apollo-server": "^3.13.0",
     "dotenv": "^16.3.1",
     "graphql": "^16.8.1",

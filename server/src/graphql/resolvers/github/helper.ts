@@ -1,18 +1,25 @@
-import fetch from 'node-fetch';
+import { Octokit } from '@octokit/core';
 
 export async function fetchGitHubData(endpoint: string, token: string) {
-  const url = `https://api.github.com${endpoint}`;
-  const response = await fetch(url, {
-    method: 'GET',
+  const octokit = new Octokit({
+    auth: token,
+  });
+  const response = await octokit.request(`GET ${endpoint}/repos`, {
     headers: {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
+      'X-GitHub-Api-Version': '2022-11-28',
     },
   });
 
-  if (!response.ok) {
+  if (response.status !== 200) {
     throw new Error(`GitHub API request failed: ${response.status}`);
   }
 
-  return await response.json();
+  const filteredRepos = response.data.map((repo: any) => ({
+    // 'any' isn't best practice but filteredRepos types is handled by QueryResolvers
+    name: repo.name,
+    description: repo.description,
+    url: repo.html_url,
+  }));
+
+  return filteredRepos;
 }
