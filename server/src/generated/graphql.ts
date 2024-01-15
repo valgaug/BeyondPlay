@@ -23,6 +23,11 @@ export type Query = {
 };
 
 
+export type QueryGetRepositoriesArgs = {
+  userName: Scalars['String']['input'];
+};
+
+
 export type QueryGetWeatherArgs = {
   city: Scalars['String']['input'];
 };
@@ -131,7 +136,7 @@ export type ResolversParentTypes = {
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  getRepositories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Repository']>>>, ParentType, ContextType>;
+  getRepositories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Repository']>>>, ParentType, ContextType, RequireFields<QueryGetRepositoriesArgs, 'userName'>>;
   getWeather?: Resolver<Maybe<ResolversTypes['Weather']>, ParentType, ContextType, RequireFields<QueryGetWeatherArgs, 'city'>>;
 };
 

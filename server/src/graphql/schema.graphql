@@ -12,5 +12,5 @@ type Repository {
 
 type Query {
   getWeather(city: String!): Weather
-  getRepositories: [Repository]
+  getRepositories(userName: String!): [Repository]
 }
