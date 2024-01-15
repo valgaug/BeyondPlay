@@ -16,6 +16,13 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AccessLog = {
+  __typename?: 'AccessLog';
+  operation: Scalars['String']['output'];
+  timestamp: Scalars['String']['output'];
+  user: Scalars['Int']['output'];
+};
+
 export type AuthPayload = {
   __typename?: 'AuthPayload';
   token: Scalars['String']['output'];
@@ -42,6 +49,7 @@ export type MutationLogoutUserArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  getAccessLogs?: Maybe<Array<Maybe<AccessLog>>>;
   getRepositories?: Maybe<Array<Maybe<Repository>>>;
   getWeather?: Maybe<Weather>;
 };
@@ -67,6 +75,7 @@ export type User = {
   __typename?: 'User';
   blacklistedTokens?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   id: Scalars['ID']['output'];
+  isAdmin?: Maybe<Scalars['Boolean']['output']>;
   username: Scalars['String']['output'];
 };
 
@@ -148,10 +157,12 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AccessLog: ResolverTypeWrapper<AccessLog>;
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Repository: ResolverTypeWrapper<Repository>;
@@ -162,16 +173,25 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AccessLog: AccessLog;
   AuthPayload: AuthPayload;
   Boolean: Scalars['Boolean']['output'];
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
+  Int: Scalars['Int']['output'];
   Mutation: {};
   Query: {};
   Repository: Repository;
   String: Scalars['String']['output'];
   User: User;
   Weather: Weather;
+};
+
+export type AccessLogResolvers<ContextType = any, ParentType extends ResolversParentTypes['AccessLog'] = ResolversParentTypes['AccessLog']> = {
+  operation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  timestamp?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type AuthPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthPayload'] = ResolversParentTypes['AuthPayload']> = {
@@ -186,6 +206,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+  getAccessLogs?: Resolver<Maybe<Array<Maybe<ResolversTypes['AccessLog']>>>, ParentType, ContextType>;
   getRepositories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Repository']>>>, ParentType, ContextType, RequireFields<QueryGetRepositoriesArgs, 'userName'>>;
   getWeather?: Resolver<Maybe<ResolversTypes['Weather']>, ParentType, ContextType, RequireFields<QueryGetWeatherArgs, 'city'>>;
 };
@@ -200,6 +221,7 @@ export type RepositoryResolvers<ContextType = any, ParentType extends ResolversP
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   blacklistedTokens?: Resolver<Maybe<Array<Maybe<ResolversTypes['String']>>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  isAdmin?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
   username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
@@ -212,6 +234,7 @@ export type WeatherResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type Resolvers<ContextType = any> = {
+  AccessLog?: AccessLogResolvers<ContextType>;
   AuthPayload?: AuthPayloadResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;

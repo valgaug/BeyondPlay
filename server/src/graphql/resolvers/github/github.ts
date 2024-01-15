@@ -1,8 +1,8 @@
 import { fetchGitHubData } from './helper';
 import { QueryResolvers } from '../../../generated/graphql';
-import { accessLog } from '../../../db/accesslog';
+import { accessLog } from '../../../db/accessLog';
 
-export const queryResolvers: QueryResolvers = {
+const queryResolvers: QueryResolvers = {
   getRepositories: async (_parent, args, context) => {
     if (!context.user) {
       throw new Error('Unauthorized! You need to be logged in.');
@@ -14,6 +14,7 @@ export const queryResolvers: QueryResolvers = {
       user: context.user.userId,
       timestamp: new Date().toISOString(),
     });
+    console.log(accessLog);
     return data;
   },
 };

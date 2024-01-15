@@ -25,7 +25,7 @@ export default function context({ req }: ExpressContext) {
         throw new Error('This token has been blacklisted');
       }
 
-      user = { userId: decoded.userId };
+      user = { userId: dbUser.id, isAdmin: dbUser.isAdmin };
     } catch (error) {
       console.error(error);
     }

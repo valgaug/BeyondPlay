@@ -19,11 +19,19 @@ type User {
   id: ID!
   username: String!
   blacklistedTokens: [String]
+  isAdmin: Boolean
+}
+
+type AccessLog {
+  operation: String!
+  user: Int!
+  timestamp: String!
 }
 
 type Query {
   getWeather(city: String!): Weather
   getRepositories(userName: String!): [Repository]
+  getAccessLogs: [AccessLog]
 }
 
 type Mutation {
