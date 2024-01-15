@@ -1,4 +1,4 @@
-import { gitHubResolver } from './github/github';
+import { gitHubResolvers } from './github/github';
 import { weatherResolver } from './weather/weather';
 
-export const resolvers = [gitHubResolver, weatherResolver];
+export const resolvers = [gitHubResolvers, weatherResolver];
