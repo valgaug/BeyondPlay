@@ -16,6 +16,23 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AuthPayload = {
+  __typename?: 'AuthPayload';
+  token: Scalars['String']['output'];
+  user: User;
+};
+
+export type Mutation = {
+  __typename?: 'Mutation';
+  loginUser?: Maybe<AuthPayload>;
+};
+
+
+export type MutationLoginUserArgs = {
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
+
 export type Query = {
   __typename?: 'Query';
   getRepositories?: Maybe<Array<Maybe<Repository>>>;
@@ -37,6 +54,12 @@ export type Repository = {
   description?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
   url: Scalars['String']['output'];
+};
+
+export type User = {
+  __typename?: 'User';
+  id?: Maybe<Scalars['ID']['output']>;
+  username?: Maybe<Scalars['String']['output']>;
 };
 
 export type Weather = {
@@ -117,22 +140,40 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AuthPayload: ResolverTypeWrapper<AuthPayload>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
+  ID: ResolverTypeWrapper<Scalars['ID']['output']>;
+  Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
   Repository: ResolverTypeWrapper<Repository>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  User: ResolverTypeWrapper<User>;
   Weather: ResolverTypeWrapper<Weather>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AuthPayload: AuthPayload;
   Boolean: Scalars['Boolean']['output'];
   Float: Scalars['Float']['output'];
+  ID: Scalars['ID']['output'];
+  Mutation: {};
   Query: {};
   Repository: Repository;
   String: Scalars['String']['output'];
+  User: User;
   Weather: Weather;
+};
+
+export type AuthPayloadResolvers<ContextType = any, ParentType extends ResolversParentTypes['AuthPayload'] = ResolversParentTypes['AuthPayload']> = {
+  token?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  user?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  loginUser?: Resolver<Maybe<ResolversTypes['AuthPayload']>, ParentType, ContextType, RequireFields<MutationLoginUserArgs, 'password' | 'username'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -147,6 +188,12 @@ export type RepositoryResolvers<ContextType = any, ParentType extends ResolversP
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type WeatherResolvers<ContextType = any, ParentType extends ResolversParentTypes['Weather'] = ResolversParentTypes['Weather']> = {
   city?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   temperature?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
@@ -155,8 +202,11 @@ export type WeatherResolvers<ContextType = any, ParentType extends ResolversPare
 };
 
 export type Resolvers<ContextType = any> = {
+  AuthPayload?: AuthPayloadResolvers<ContextType>;
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Repository?: RepositoryResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
   Weather?: WeatherResolvers<ContextType>;
 };
 

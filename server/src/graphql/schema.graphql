@@ -10,7 +10,21 @@ type Repository {
   url: String!
 }
 
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type User {
+  id: ID
+  username: String
+}
+
 type Query {
   getWeather(city: String!): Weather
   getRepositories(userName: String!): [Repository]
+}
+
+type Mutation {
+  loginUser(username: String!, password: String!): AuthPayload
 }
