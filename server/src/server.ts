@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server';
 import { resolvers } from './graphql/resolvers';
-import context from './graphql/contexts/github';
+import context from './graphql/contexts/authentication';
 import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { join } from 'path';
