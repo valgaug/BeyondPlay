@@ -16,8 +16,9 @@ type AuthPayload {
 }
 
 type User {
-  id: ID
-  username: String
+  id: ID!
+  username: String!
+  blacklistedTokens: [String]
 }
 
 type Query {
@@ -27,4 +28,5 @@ type Query {
 
 type Mutation {
   loginUser(username: String!, password: String!): AuthPayload
+  logoutUser(username: String!, token: String!): Boolean
 }

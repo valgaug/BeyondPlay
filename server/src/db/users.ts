@@ -1,4 +1,11 @@
-export const users = [
+type User = {
+  id: string;
+  username: string;
+  password: string;
+  blacklistedTokens?: string[];
+};
+
+export const users: User[] = [
   {
     id: '1',
     username: 'Valentin',
