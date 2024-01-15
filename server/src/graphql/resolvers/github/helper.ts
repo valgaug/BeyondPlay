@@ -1,9 +1,7 @@
 import { Octokit } from '@octokit/core';
 
 export async function fetchGitHubData(endpoint: string, token: string) {
-  const octokit = new Octokit({
-    auth: token,
-  });
+  const octokit = new Octokit({});
   const response = await octokit.request(`GET ${endpoint}/repos`, {
     headers: {
       'X-GitHub-Api-Version': '2022-11-28',
