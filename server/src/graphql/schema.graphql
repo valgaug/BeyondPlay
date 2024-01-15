@@ -1,0 +1,16 @@
+type Weather {
+  city: String!
+  temperature: Float!
+  description: String!
+}
+
+type Repository {
+  name: String!
+  description: String
+  url: String!
+}
+
+type Query {
+  getWeather(city: String!): Weather
+  getRepositories: [Repository]
+}
