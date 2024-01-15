@@ -4,6 +4,9 @@ import context from './graphql/contexts/github';
 import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { join } from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Load GraphQL type definitions
 const typeDefs = loadSchemaSync(join(__dirname, './graphql/**/*.graphql'), {
@@ -18,8 +21,9 @@ async function startServer() {
     context,
   });
 
-  // Start the server and listen on a specific port
-  const { url } = await server.listen({ port: 4000 });
+  const PORT = process.env.SERVER_PORT || 4000;
+
+  const { url } = await server.listen({ port: PORT });
   console.log(`Server is running at ${url}`);
 }
 
