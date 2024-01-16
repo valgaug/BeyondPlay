@@ -19,7 +19,6 @@
   "author": "Valentin Gaugain",
   "license": "MIT",
   "dependencies": {
-    "@apollo/client": "^3.8.9",
     "@graphql-tools/load": "^8.0.1",
     "apollo-server": "^3.13.0",
     "apollo-server-express": "^3.13.0",
