@@ -4,7 +4,6 @@ import { accessLog } from '../../../db/accessLog';
 
 const queryResolvers: QueryResolvers = {
   getRepositories: async (_parent, args, context) => {
-    console.log(context.user);
     if (!context.user) {
       throw new Error('Unauthorized! You need to be logged in.');
     }
