@@ -2,6 +2,7 @@ import Header from './components/common/Header';
 import LoginForm from './components/auth/LoginForm';
 import Weather from './components/dataDisplay/WeatherData';
 import RepositoriesComponent from './components/dataDisplay/GithubData';
+import LogRetrievals from './components/dataDisplay/LogRetrievals';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import { useAuth } from './context/AuthContext';
@@ -27,6 +28,7 @@ function App() {
         {!token && <LoginForm />}
         <Weather />
         <RepositoriesComponent />
+        <LogRetrievals />
       </Box>
     </Container>
   );
