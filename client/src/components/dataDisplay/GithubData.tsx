@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
+import React, { useRef } from 'react';
+import { useLazyQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../../graphql/queries/github';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -13,29 +13,28 @@ interface Repo {
 }
 
 const RepositoriesComponent: React.FC = () => {
-  const [githubUserName, setGithubUserName] = useState('');
-  const [shouldFetch, setShouldFetch] = useState('');
+  const githubUserNameRef = useRef('');
 
-  const { error, data } = useQuery(GET_REPOSITORIES, {
-    variables: { githubUserName: shouldFetch },
-    skip: !shouldFetch,
-    fetchPolicy: 'no-cache',
+  const [getRepositories, { loading, data, error }] = useLazyQuery(GET_REPOSITORIES, {
+    fetchPolicy: 'network-only',
   });
 
   const handleClick = () => {
-    setShouldFetch(githubUserName);
+    if (githubUserNameRef.current) {
+      getRepositories({ variables: { githubUserName: githubUserNameRef.current } });
+    }
   };
-
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, border: 1, borderColor: 'divider', p: 3, borderRadius: 2 }}>
-      <TextField label='GitHub Username' variant='outlined' value={githubUserName} onChange={(e) => setGithubUserName(e.target.value)} />
+      <TextField label='GitHub Username' variant='outlined' onChange={(e) => (githubUserNameRef.current = e.target.value)} />
       <Button variant='contained' onClick={handleClick}>
         Get Repositories
       </Button>
       {error && <Typography color='error'>Error: {error.message}</Typography>}
-      {data && (
+      {loading && <Typography>Loading...</Typography>}
+      {!error && data && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2, alignItems: 'center' }}>
-          <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>Repositories for {data.getRepositories.userName}:</Typography>
+          <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>Repositories for {githubUserNameRef.current}:</Typography>
           {data.getRepositories.map((repo: Repo) => (
             <Box key={repo.name}>
               <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>
