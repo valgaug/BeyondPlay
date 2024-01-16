@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLazyQuery } from '@apollo/client';
-import { GET_WEATHER } from '../../graphql/weather';
+import { GET_WEATHER } from '../../graphql/queries/weather';
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState('');
