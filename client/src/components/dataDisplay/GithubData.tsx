@@ -19,6 +19,7 @@ const RepositoriesComponent: React.FC = () => {
   const { error, data } = useQuery(GET_REPOSITORIES, {
     variables: { githubUserName: shouldFetch },
     skip: !shouldFetch,
+    fetchPolicy: 'no-cache',
   });
 
   const handleClick = () => {
