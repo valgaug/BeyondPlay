@@ -5,10 +5,12 @@ import { useAuth } from '../../context/AuthContext';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [loginUser] = useMutation(LOGIN_MUTATION);
   const { setToken } = useAuth();
 
@@ -20,7 +22,11 @@ const LoginForm: React.FC = () => {
       setToken(token);
       localStorage.setItem('authToken', token);
     } catch (err) {
-      console.error(err);
+      if (err instanceof Error) {
+        setErrorMessage(err.message);
+      } else {
+        setErrorMessage('An unknown error occurred');
+      }
     }
   };
 
@@ -31,6 +37,7 @@ const LoginForm: React.FC = () => {
       <Button variant='contained' type='submit'>
         Login
       </Button>
+      {errorMessage && <Typography color='error'>{errorMessage}</Typography>}
     </Box>
   );
 };
