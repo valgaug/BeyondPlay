@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 interface AuthContextProps {
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
+  logout: () => void;
 }
 
 interface AuthProviderProps {
@@ -14,7 +15,12 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
 
-  return <AuthContext.Provider value={{ token, setToken }}>{children}</AuthContext.Provider>;
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem('authToken');
+  };
+
+  return <AuthContext.Provider value={{ token, setToken, logout }}>{children}</AuthContext.Provider>;
 };
 
 function useAuth(): AuthContextProps {
