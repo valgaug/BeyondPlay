@@ -6,8 +6,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // Get the JWT token from local storage if it exists
-  const token = localStorage.getItem('jwtToken');
+  const token = localStorage.getItem('authToken');
 
   return {
     headers: {

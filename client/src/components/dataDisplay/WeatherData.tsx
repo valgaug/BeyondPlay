@@ -8,15 +8,15 @@ import Typography from '@mui/material/Typography';
 
 const Weather: React.FC = () => {
   const [city, setCity] = useState('');
-  const [getCity, setGetCity] = useState('');
+  const [shouldFetch, setShouldFetch] = useState('');
 
-  const { loading, error, data } = useQuery(GET_WEATHER, {
-    variables: { city: getCity },
-    skip: !getCity,
+  const { error, data } = useQuery(GET_WEATHER, {
+    variables: { city: shouldFetch },
+    skip: !shouldFetch,
   });
 
   const handleClick = () => {
-    setGetCity(city);
+    setShouldFetch(city);
   };
 
   return (
@@ -28,7 +28,7 @@ const Weather: React.FC = () => {
       {error && <Typography color='error'>Error: {error.message}</Typography>}
       {data && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, p: 2, alignItems: 'center' }}>
-          <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>Weather in {data.getWeather.city}</Typography>
+          <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>Weather in {data.getWeather.city}:</Typography>
           <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>{data.getWeather.weather}</Typography>
           <Typography sx={{ fontSize: '1rem', fontFamily: 'Arial' }}>{data.getWeather.temperature}°C</Typography>
         </Box>

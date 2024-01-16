@@ -30,7 +30,7 @@ type AccessLog {
 
 type Query {
   getWeather(city: String!): Weather
-  getRepositories(userName: String!): [Repository]
+  getRepositories(githubUserName: String!): [Repository]
   getAccessLogs: [AccessLog]
 }
 

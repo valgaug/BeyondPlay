@@ -56,7 +56,7 @@ export type Query = {
 
 
 export type QueryGetRepositoriesArgs = {
-  userName: Scalars['String']['input'];
+  githubUserName: Scalars['String']['input'];
 };
 
 
@@ -207,7 +207,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getAccessLogs?: Resolver<Maybe<Array<Maybe<ResolversTypes['AccessLog']>>>, ParentType, ContextType>;
-  getRepositories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Repository']>>>, ParentType, ContextType, RequireFields<QueryGetRepositoriesArgs, 'userName'>>;
+  getRepositories?: Resolver<Maybe<Array<Maybe<ResolversTypes['Repository']>>>, ParentType, ContextType, RequireFields<QueryGetRepositoriesArgs, 'githubUserName'>>;
   getWeather?: Resolver<Maybe<ResolversTypes['Weather']>, ParentType, ContextType, RequireFields<QueryGetWeatherArgs, 'city'>>;
 };
 
