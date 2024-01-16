@@ -8,13 +8,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Load GraphQL type definitions
 const typeDefs = loadSchemaSync(join(__dirname, './graphql/**/*.graphql'), {
   loaders: [new GraphQLFileLoader()],
 });
 
 async function startServer() {
-  // Create an instance of Apollo Server
   const server = new ApolloServer({
     typeDefs,
     resolvers,

@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     <AppBar position='static'>
       <Toolbar>
         <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-          Your App Title
+          BeyondPlay Technical Test
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
         <Button color='inherit' onClick={logout}>
