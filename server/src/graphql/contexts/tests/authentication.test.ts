@@ -5,10 +5,7 @@ import { ExpressContext } from 'apollo-server-express';
 
 jest.mock('jsonwebtoken');
 jest.mock('../../../db/users', () => ({
-  users: [
-    { id: '1', username: 'user1', isAdmin: true, blacklistedTokens: [] },
-    // ...other mock users
-  ],
+  users: [{ id: '1', username: 'user1', isAdmin: true, blacklistedTokens: [] }],
 }));
 
 describe('context', () => {

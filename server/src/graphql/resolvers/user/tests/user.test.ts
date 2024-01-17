@@ -37,7 +37,6 @@ describe('mutationResolvers', () => {
     const logoutUser = userResolvers.Mutation.logoutUser as Function;
     await logoutUser(null, args, null);
 
-    // Access the mockUsers from the mocked module
     const { users: mockUsers } = require('../../../../db/users');
     expect(mockUsers[0].blacklistedTokens).toContain('token');
   });

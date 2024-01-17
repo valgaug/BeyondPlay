@@ -6,7 +6,6 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('fetchWeatherData', () => {
   it('should fetch weather data successfully', async () => {
-    // Mock successful response
     const resp = {
       data: {
         name: 'Paris',
@@ -16,10 +15,8 @@ describe('fetchWeatherData', () => {
     };
     mockedAxios.get.mockResolvedValue(resp);
 
-    // Call the function
     const data = await fetchWeatherData('Paris');
 
-    // Assertions
     expect(mockedAxios.get).toHaveBeenCalledWith(expect.stringContaining('Paris'));
     expect(data).toEqual({
       city: 'Paris',
