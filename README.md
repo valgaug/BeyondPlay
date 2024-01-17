@@ -54,7 +54,7 @@ Here are the steps to start using **BeyondPlay Technical Assignment**:
 
 Here are some ideas to improve the project in the future:
 
-- Use a cloud database like MongoDB to store user data and logs.
+- Use a cloud database like PostgreSQL or MongoDB to store user data and logs.
 - Enhance security by encrypting user passwords using a method like bcrypt.
 - Increase test coverage by using Jest for testing.
 - Add integration and end-to-end (E2E) tests to ensure everything works together.
