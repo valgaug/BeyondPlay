@@ -2,7 +2,7 @@
 
 ## What is it?
 
-**BeyondPlay Technical Assignment** is a web application that lets you check the weather for your favorite city. You can also log in to access GitHub repositories and retrieve logs, but only if you're an admin.
+**BeyondPlay Technical Assignment** is a web application that lets you check the weather for your favorite city. You can also log in to access GitHub repositories. And to retrieve logs you will need to login as an admin.
 
 ## Who Can Use It?
 
